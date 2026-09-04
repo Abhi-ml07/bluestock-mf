@@ -11,13 +11,7 @@ print("=" * 70)
 print(f"\nFound {len(csv_files)} CSV files.\n")
 
 datasets = {}
-
 for file in csv_files:
-
-    print("\n" + "=" * 70)
-    print(f"FILE: {file.name}")
-    print("=" * 70)
-
     try:
         df = pd.read_csv(file)
         datasets[file.stem] = df
