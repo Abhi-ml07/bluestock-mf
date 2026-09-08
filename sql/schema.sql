@@ -104,3 +104,29 @@ CREATE TABLE fact_sip (
     yoy_growth_pct REAL,
     FOREIGN KEY (month) REFERENCES dim_date(date)
 );
+
+CREATE TABLE fact_folio_count (
+    month DATE PRIMARY KEY,
+    total_folios_crore REAL,
+    equity_folios_crore REAL,
+    debt_folios_crore REAL,
+    hybrid_folios_crore REAL,
+    others_folios_crore REAL,
+    FOREIGN KEY (month) REFERENCES dim_date(date)
+);
+
+CREATE TABLE fact_category_inflows (
+    month DATE NOT NULL,
+    category TEXT NOT NULL,
+    net_inflow_crore REAL,
+    PRIMARY KEY (month, category),
+    FOREIGN KEY (month) REFERENCES dim_date(date)
+);
+
+CREATE TABLE fact_benchmark (
+    date DATE NOT NULL,
+    index_name TEXT NOT NULL,
+    close_value REAL NOT NULL,
+    PRIMARY KEY (date, index_name),
+    FOREIGN KEY (date) REFERENCES dim_date(date)
+);
