@@ -1,4 +1,4 @@
-date,fund_house,aum_lakh_crore,aum_crore,num_schemes
+date,fund_house,fund_house_aum_lakh_crore,fund_house_aum_crore,num_schemes
 2022-03-31,SBI Mutual Fund,6.05,605000,186
 2022-03-31,ICICI Prudential MF,4.65,465000,216
 2022-03-31,HDFC Mutual Fund,4.35,435000,195

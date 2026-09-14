@@ -1,41 +1,26 @@
-import pandas as pd
 from pathlib import Path
+import pandas as pd
 
-RAW_DATA_DIR = Path("data/raw")
+PROJECT_ROOT = Path(__file__).resolve().parent
+RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 
-csv_files = sorted(RAW_DATA_DIR.glob("*.csv"))
+def load_datasets():
+    csv_files = sorted(RAW_DATA_DIR.glob("*.csv"))
+    datasets = {}
 
-print("=" * 70)
-print("BLUESTOCK MUTUAL FUND - DATA INGESTION")
-print("=" * 70)
-print(f"\nFound {len(csv_files)} CSV files.\n")
+    for file in csv_files:
+        try:
+            datasets[file.stem] = pd.read_csv(file)
+        except Exception as e:
+            raise RuntimeError(f"Failed to load {file.name}") from e
 
-datasets = {}
-for file in csv_files:
-    try:
-        df = pd.read_csv(file)
-        datasets[file.stem] = df
+    return datasets
 
-        print(f"\nShape: {df.shape}")
-        print("\nColumns:")
-        print(df.columns.tolist())
-        print("\nData Types:")
-        print(df.dtypes)
-        print("\nFirst 5 Rows:")
-        print(df.head())
-        print("\nMissing Values:")
-        missing = df.isnull().sum()
-        print(missing[missing > 0])
-        print(f"\nDuplicate Rows: {df.duplicated().sum()}")
-        
-    except Exception as e:
-        print(f"ERROR loading {file.name}: {e}")
+def main():
+    datasets = load_datasets()
 
-print("\n" + "=" * 70)
-print("DATA INGESTION SUMMARY")
-print("=" * 70)
+    for name, df in datasets.items():
+        print(f"{name}: {df.shape[0]:,} rows × {df.shape[1]} columns")
 
-for name, df in datasets.items():
-    print(f"{name}: {df.shape[0]:,} rows × {df.shape[1]} columns")
-
-print("\nData ingestion inspection completed.")
+if __name__ == "__main__":
+    main()
