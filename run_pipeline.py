@@ -33,6 +33,7 @@ def run_script(script):
         raise RuntimeError(f"Script execution failed: {script}") from e
 
 def main():
+    run_script("live_nav_fetch.py")
     run_notebook("01_data_ingestion.ipynb")
     run_notebook("02_data_cleaning.ipynb")
     run_script("load_database.py")
