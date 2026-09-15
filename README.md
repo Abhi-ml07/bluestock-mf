@@ -58,6 +58,8 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
+### PowerBI Dashboard :
+https://app.powerbi.com/reportEmbed?reportId=17f3e844-a94c-4840-abb1-bda50eb2ea16
 
 ### macOS or Linux
 
