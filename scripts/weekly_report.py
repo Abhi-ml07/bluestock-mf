@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from analytics import PERFORMANCE_FILE
+from scripts.analytics import PERFORMANCE_FILE
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
